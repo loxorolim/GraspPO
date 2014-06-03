@@ -9,8 +9,9 @@ int* initialSolution(int size)
 	int i;
 	for (i = 0; i < size; i++)
 		ret[i] = 0;
+	return NULL;
 }
 int * generateRCL(int* clauses)
 {
-
+	return NULL;
 }
