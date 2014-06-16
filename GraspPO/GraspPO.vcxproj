@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grasp.h" />
+    <ClInclude Include="LocalSearch.h" />
     <ClInclude Include="SetCoveringMethods.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -88,6 +89,7 @@
   <ItemGroup>
     <ClCompile Include="Grasp.cpp" />
     <ClCompile Include="GraspPO.cpp" />
+    <ClCompile Include="LocalSearch.cpp" />
     <ClCompile Include="SetCoveringMethods.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

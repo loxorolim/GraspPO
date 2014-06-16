@@ -60,7 +60,7 @@ int** createMatrixFromFile(char* name)
 	
 	return ret;
 }
-vector<vector<int>> createSCPFromFile(char* name) 
+vector<vector<int>> createSCPFromFile(char* name, int* rowsSize, int* columnsSize) 
 {
 	FILE *file;
 	vector<vector<int>> ret;
@@ -69,10 +69,8 @@ vector<vector<int>> createSCPFromFile(char* name)
 	{
 		int rows,columns,i;		
 		fscanf_s(file, " %d  %d", &rows,&columns);
-		
-		
-		
-		
+		*rowsSize = rows;
+		*columnsSize = columns;
 
 		for (i = 0; i < columns; i++)		// LE VALORES QUE NÃO SERÃO UTILIZADOS		
 			fscanf_s(file, " %d");		
@@ -97,3 +95,4 @@ vector<vector<int>> createSCPFromFile(char* name)
 	
 	return ret;
 }
+

@@ -3,12 +3,17 @@
 
 #include "stdafx.h"
 #include "SetCoveringMethods.h"
+#include "Grasp.h"
+#include <time.h> 
 #include <vector>
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	vector<vector<int>> teste = createSCPFromFile("teste.txt");
+	srand (time(NULL));
+	int columnsSize = -1;
+	int rowsSize = -1;
+	vector<vector<int>> teste = createSCPFromFile("teste.txt", &rowsSize, &columnsSize);
 	int i,j;
 	int x = teste.size();
 	for(i = 0;i<teste.size();i++)
@@ -20,6 +25,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		printf("\n");
 	}
+	constructPhase(teste, columnsSize);
+	//int * ini = initialSolution(columnsSize);
+	//vector<int> RCL = generateRCL(teste, columnsSize,ini);
+	//int cand = selectCandidate(RCL);
 	scanf_s("%d");
 	return 0;
 }
