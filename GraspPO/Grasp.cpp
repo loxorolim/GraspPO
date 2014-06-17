@@ -34,17 +34,20 @@ int* initialSolution(int size)
 //	return ret;
 //	
 //}
-void constructPhase(vector<vector<int>> scp, int size)
+int* constructPhase(vector<vector<int>> scp, int size, int* solution)
 {
 	//vector<vector<int>> scpCopy = copyScp(scp);
-	int* solution = initialSolution(size);
+
 	while(scp.size() > 0)
 	{
 		vector<int> RCL = generateRCL(scp,size,solution);
 		int cand = selectCandidate(RCL);
 		solution[cand] = 1;
 		scp = removeCovered(scp,cand);
+			printf("%d",scp.size());
 	}
+
+	return solution;
 }
 vector<vector<int>> removeCovered(vector<vector<int>> scp, int candidate)
 {
@@ -61,6 +64,7 @@ vector<vector<int>> removeCovered(vector<vector<int>> scp, int candidate)
 				break;
 			}
 		}
+		
 	}
 	return scp;
 }
