@@ -8,9 +8,9 @@
 using namespace std;
 
 
-int* BestFlip(vector<vector<int>> scp, int* solution, int size);
+int* BestFlip(vector<vector<int>> &scp, int* solution, int size);
 int* RandomFlip(int * solution, int size);
 int numOfColumnsInSolution(int * solution, int size);
-int clausesSatisfiedBySolution(vector<vector<int>> scp, int * solution, int size);
-int isBetterSolution(vector<vector<int>> scp, int * newSolution, int * solution, int size);
-int* WalkSat(vector<vector<int>> scp, int * solution, int size);
+int clausesSatisfiedBySolution(vector<vector<int>> &scp, int * solution, int size);
+int isBetterSolution(vector<vector<int>> &scp, int * newSolution, int * solution, int size);
+int* WalkSat(vector<vector<int>> &scp, int * solution, int size);

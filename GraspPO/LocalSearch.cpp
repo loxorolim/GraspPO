@@ -10,8 +10,8 @@ using namespace std;
 
 float const p = 0.75;
 
-
-int* BestFlip(vector<vector<int>> scp, int* solution, int size)
+int teste = 0;
+int* BestFlip(vector<vector<int>> &scp, int* solution, int size)
 {
 	vector<int*> bestSolutions;
 	int* best = (int*)malloc(sizeof(int)*size);
@@ -28,7 +28,10 @@ int* BestFlip(vector<vector<int>> scp, int* solution, int size)
 		//printf("\n");
 
 		solution[i] = !solution[i];
-		int isBetter = isBetterSolution(scp, solution, bestSolutions[0], size);
+		teste = 0;
+//		int isBetter = isBetterSolution(scp, solution, bestSolutions[0], size);
+		int isBetter = 0;
+		printf("%d\n",teste);
 		if(isBetter == 1)
 		{
 			for(int i = 0; i < size; i++)
@@ -75,7 +78,7 @@ int numOfColumnsInSolution(int * solution, int size)
 			ret++;
 	return ret;
 }
-int clausesSatisfiedBySolution(vector<vector<int>> scp, int * solution, int size)
+int clausesSatisfiedBySolution(vector<vector<int>> &scp, int * solution, int size)
 {
 	int num = 0;
 	for(int i = 0;i < scp.size(); i++)
@@ -91,6 +94,7 @@ int clausesSatisfiedBySolution(vector<vector<int>> scp, int * solution, int size
 						{
 							j = scp[i].size();
 							num++;
+							teste++;
 							break;
 						}
 					}
@@ -102,7 +106,7 @@ int clausesSatisfiedBySolution(vector<vector<int>> scp, int * solution, int size
 	}
 	return num;
 }
-int isBetterSolution(vector<vector<int>> scp, int * newSolution, int * solution, int size)
+int isBetterSolution(vector<vector<int>> &scp, int * newSolution, int * solution, int size)
 {
 	//2 se são iguais
 	//1 se é melhor
@@ -127,10 +131,9 @@ int isBetterSolution(vector<vector<int>> scp, int * newSolution, int * solution,
 }
 
 
-int* WalkSat(vector<vector<int>> scp, int * solution, int size)
+int* WalkSat(vector<vector<int>> &scp, int * solution, int size)
 {
 	int* newSolution;
-
 
 	for(int i = 0; i < 10*size; i++)
 	{
@@ -146,11 +149,11 @@ int* WalkSat(vector<vector<int>> scp, int * solution, int size)
 			
 		free(solution);
 		solution = newSolution;
-		//for(int i = 0; i < size; i++)
-		//{
-		//	printf("%d",solution[i]);
-		//}
-		//printf("\n");
+		for(int i = 0; i < size; i++)
+		{
+			printf("%d",solution[i]);
+		}
+//		printf("\n");
 
 	}
 	return solution;

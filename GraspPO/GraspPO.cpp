@@ -18,15 +18,17 @@ int* metaheuristic(vector<vector<int>> scp,int size)
 	{
 		newSolution = initialSolution(size);
 		newSolution = constructPhase(scp, size, newSolution);
-	//	newSolution = WalkSat(scp,newSolution,size);
+		newSolution = WalkSat(scp,newSolution,size);
 		if(isBetterSolution(scp, newSolution, solution, size) == 1)
 		{
 			free(solution);
 			solution = newSolution;
 		}
+		printf("%d",i);
 	}
 	return solution;
 }
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	srand (time(NULL));
@@ -46,12 +48,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		printf("\n");
 	}
 
-
+//	int* cArray = coverageArray(teste,columnsSize);
 	int* sol = metaheuristic(teste,columnsSize);
-	for(int i = 0; i < columnsSize; i++)
-	{
-		printf("%d",sol[i]);
-	}
+	//for(int i = 0; i < columnsSize; i++)
+	//{
+	//	printf("%d",cArray[i]);
+	//}
 	//int * solution = constructPhase(teste, columnsSize);
 	//WalkSat(teste, solution, columnsSize);
 	//int * ini = initialSolution(columnsSize);
