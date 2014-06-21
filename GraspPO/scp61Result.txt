@@ -1,0 +1,25 @@
+Instância: 1
+Linhas cobertas: 200
+Número de colunas na solução: 22
+Tempo para achar melhor solução: 72.000000
+Tempo total de execução da instância: 128.000000
+Instância: 2
+Linhas cobertas: 200
+Número de colunas na solução: 22
+Tempo para achar melhor solução: 64.000000
+Tempo total de execução da instância: 120.000000
+Instância: 3
+Linhas cobertas: 200
+Número de colunas na solução: 21
+Tempo para achar melhor solução: 32.000000
+Tempo total de execução da instância: 120.000000
+Instância: 4
+Linhas cobertas: 200
+Número de colunas na solução: 23
+Tempo para achar melhor solução: 17.000000
+Tempo total de execução da instância: 120.000000
+Instância: 5
+Linhas cobertas: 200
+Número de colunas na solução: 22
+Tempo para achar melhor solução: 81.000000
+Tempo total de execução da instância: 121.000000

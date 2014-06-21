@@ -13,3 +13,4 @@ vector<int> generateRCL(vector<vector<int>> &scp,vector<vector<int>> &cMatrix, i
 vector<vector<int>> copyScp(vector<vector<int>> &scp);
 int* constructPhase(vector<vector<int>> scp, int size, int* solution);
 void removeCovered(vector<vector<int>> &scp,vector<vector<int>> &cMatrix, int candidate, int* tam);
+vector<vector<int>> coverageMatrix(vector<vector<int>> &scp,int size);

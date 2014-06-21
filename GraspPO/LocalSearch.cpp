@@ -6,19 +6,28 @@
 #include <stdio.h>
 #include <vector>
 #include <time.h>      
+
 using namespace std;
 
 float const p = 0.75;
 
 int teste = 0;
-int* BestFlip(vector<vector<int>> &scp, int* solution, int size)
+void BestFlip(vector<vector<int>> &scp,vector<vector<int>> &cMatrix, int* cArray, sol* solution, int size)
 {
-	vector<int*> bestSolutions;
-	int* best = (int*)malloc(sizeof(int)*size);
-	for(int i = 0; i < size; i++)
-		best[i] = solution[i];
-	bestSolutions.push_back(best);
-	
+	//vector<int*> bestSolutions;
+	//int* best = (int*)malloc(sizeof(int)*size);
+	//for(int i = 0; i < size; i++)
+	//	best[i] = solution->solution[i];
+	//bestSolutions.push_back(best);
+	//for(int i = 0; i < size; i ++)
+	//{
+	//	printf("%d",solution->solution[i]);
+	//}
+	vector<int> bestFlips;
+	bestFlips.push_back(-1);
+	int bestClausesSatisfied = solution->clausesSatisfied;
+	int bestNumberOfColumns = solution->numberOfColumns;
+//	int first = 1;
 	for(int i = 0; i < size; i++)
 	{
 		//for(int i = 0; i < size; i++)
@@ -27,48 +36,178 @@ int* BestFlip(vector<vector<int>> &scp, int* solution, int size)
 		//}
 		//printf("\n");
 
-		solution[i] = !solution[i];
-		teste = 0;
-//		int isBetter = isBetterSolution(scp, solution, bestSolutions[0], size);
-		int isBetter = 0;
-		printf("%d\n",teste);
-		if(isBetter == 1)
+		solution->solution[i] = !(solution->solution[i]);
+//		int isBetter = 0;
+
+		if(solution->solution[i]) //era 0
 		{
-			for(int i = 0; i < size; i++)
-				best[i] = solution[i];	
-			for(int i = 1; i < bestSolutions.size(); i++)
+			int satisfied = solution->clausesSatisfied;			
+			for(int j = 0; j < cMatrix[i].size(); j++)
 			{
-				free(bestSolutions[i]);
-				bestSolutions.erase(bestSolutions.begin() + i);
+				if(cArray[cMatrix[i][j]] == 0)
+				{
+					satisfied++;
+				}
+			}
+			if(satisfied > bestClausesSatisfied)
+			{
+				bestFlips.clear();
+				bestFlips.push_back(i);
+				bestClausesSatisfied = satisfied;
+				bestNumberOfColumns = solution->numberOfColumns+1;
+			}
+			else if(satisfied == bestClausesSatisfied)
+			{
+				if(solution->numberOfColumns+1 == bestNumberOfColumns)
+					bestFlips.push_back(i);
 			}
 			
 		}
-		if(isBetter == 2)
+		else //era 1
 		{
-			int * equalBest = (int*)malloc(sizeof(int)*size);
-			for(int i = 0; i < size; i++)
-				equalBest[i] = solution[i];
-			bestSolutions.push_back(equalBest);
-		}				
-		solution[i] = !solution[i];
+			int satisfied = solution->clausesSatisfied;			
+			for(int j = 0; j < cMatrix[i].size(); j++)
+			{
+				if(cArray[cMatrix[i][j]] == 1)
+				{
+					satisfied--;
+				}
+			}
+		    if(satisfied == bestClausesSatisfied)
+			{
+				if(solution->numberOfColumns-1 < bestNumberOfColumns)
+				{
+					bestFlips.clear();
+					bestFlips.push_back(i);
+					bestClausesSatisfied = satisfied;
+					bestNumberOfColumns = solution->numberOfColumns-1;
+				}
+				if(solution->numberOfColumns-1 == bestNumberOfColumns)
+					bestFlips.push_back(i);
+			}
+		}
+		solution->solution[i] = !(solution->solution[i]);
 	}
-	int pos = rand()%bestSolutions.size();
-	for(int i = 0; i < bestSolutions.size(); i++)
-		if(i != pos)		
-			free(bestSolutions[i]);
-	int * ret = bestSolutions[pos];
-	bestSolutions.clear();
-	return ret;
+	int pos = rand()%bestFlips.size();
+	if(bestFlips[pos]!=-1)
+		solution->solution[bestFlips[pos]] = !solution->solution[bestFlips[pos]];
+
 
 }
-int* RandomFlip(int * solution, int size)
-{		
-	int* ret = (int*)malloc(sizeof(int)*size);
+void ImprovementFlip(vector<vector<int>> &scp,vector<vector<int>> &cMatrix, int* cArray, sol* solution, int size)
+{
+	//vector<int*> bestSolutions;
+	//int* best = (int*)malloc(sizeof(int)*size);
+	//for(int i = 0; i < size; i++)
+	//	best[i] = solution->solution[i];
+	//bestSolutions.push_back(best);
+	//for(int i = 0; i < size; i ++)
+	//{
+	//	printf("%d",solution->solution[i]);
+	//}
+	vector<int> bestFlips;
+	bestFlips.push_back(-1);
+	int bestClausesSatisfied = solution->clausesSatisfied;
+	int bestNumberOfColumns = solution->numberOfColumns;
+//	int first = 1;
 	for(int i = 0; i < size; i++)
-		ret[i] = solution[i];
+	{
+		//for(int i = 0; i < size; i++)
+		//{
+		//	printf("%d",bestSolutions[0][i]);
+		//}
+		//printf("\n");
+
+		solution->solution[i] = !(solution->solution[i]);
+//		int isBetter = 0;
+
+		if(solution->solution[i]) //era 0
+		{
+			int satisfied = solution->clausesSatisfied;			
+			for(int j = 0; j < cMatrix[i].size(); j++)
+			{
+				if(cArray[cMatrix[i][j]] == 0)
+				{
+					satisfied++;
+				}
+			}
+			if(satisfied > bestClausesSatisfied)
+			{
+				bestFlips.clear();
+				bestFlips.push_back(i);
+				bestClausesSatisfied = satisfied;
+				bestNumberOfColumns = solution->numberOfColumns+1;
+			}
+			else if(satisfied == bestClausesSatisfied)
+			{
+				if(solution->numberOfColumns+1 == bestNumberOfColumns)
+					bestFlips.push_back(i);
+			}
+			
+		}
+		else //era 1
+		{
+			int satisfied = solution->clausesSatisfied;			
+			for(int j = 0; j < cMatrix[i].size(); j++)
+			{
+				if(cArray[cMatrix[i][j]] == 1)
+				{
+					satisfied--;
+				}
+			}
+		    if(satisfied == bestClausesSatisfied)
+			{
+				if(solution->numberOfColumns-1 < bestNumberOfColumns)
+				{
+					bestFlips.clear();
+					bestFlips.push_back(i);
+					bestClausesSatisfied = satisfied;
+					bestNumberOfColumns = solution->numberOfColumns-1;
+				}
+				if(solution->numberOfColumns-1 == bestNumberOfColumns)
+					bestFlips.push_back(i);
+			}
+		}
+		solution->solution[i] = !(solution->solution[i]);
+	}
+	int pos = rand()%bestFlips.size();
+	if(bestFlips[pos]!=-1)
+		solution->solution[bestFlips[pos]] = !solution->solution[bestFlips[pos]];
+
+
+}
+void RandomFlip(int * solution, int size)
+{		
+	//int* ret = (int*)malloc(sizeof(int)*size);
+//	for(int i = 0; i < size; i++)
+//		ret[i] = solution[i];
 	int pos = rand()%size;
-	ret[pos] = !ret[pos];
-	return ret;
+	solution[pos] = !solution[pos];
+//	return ret;
+}
+void RandomDualFlip(int * solution, int size)
+{		
+	//int* ret = (int*)malloc(sizeof(int)*size);
+//	for(int i = 0; i < size; i++)
+//		ret[i] = solution[i];
+	int pos = rand()%size;
+	solution[pos] = !solution[pos];
+	pos = rand()%size;
+	solution[pos] = !solution[pos];
+//	return ret;
+}
+void RandomTripleFlip(int * solution, int size)
+{		
+	//int* ret = (int*)malloc(sizeof(int)*size);
+//	for(int i = 0; i < size; i++)
+//		ret[i] = solution[i];
+	int pos = rand()%size;
+	solution[pos] = !solution[pos];
+	pos = rand()%size;
+	solution[pos] = !solution[pos];
+	pos = rand()%size;
+	solution[pos] = !solution[pos];
+//	return ret;
 }
 int numOfColumnsInSolution(int * solution, int size)
 {
@@ -94,10 +233,11 @@ int clausesSatisfiedBySolution(vector<vector<int>> &scp, int * solution, int siz
 						{
 							j = scp[i].size();
 							num++;
-							teste++;
+							
 							break;
 						}
 					}
+					teste++;
 					
 				}
 				
@@ -130,31 +270,74 @@ int isBetterSolution(vector<vector<int>> &scp, int * newSolution, int * solution
 	}	
 }
 
-
-int* WalkSat(vector<vector<int>> &scp, int * solution, int size)
+int* counterArray(vector<vector<int>> &cMatrix, sol* solution, int rowSize,int size)
 {
-	int* newSolution;
+	int* cArray = (int*)malloc(sizeof(int)*rowSize);
+	for(int i = 0; i < rowSize; i ++)
+	{
+		cArray[i] = 0;
+	}
+	for(int i = 0; i < size; i++)
+	{
 
+		if(solution->solution[i])
+		{
+			solution->numberOfColumns++;
+			for(int j = 0; j < cMatrix[i].size(); j++)
+			{
+				if(cArray[cMatrix[i][j]] == 0)
+					solution->clausesSatisfied++;
+				cArray[cMatrix[i][j]]++;
+				
+			}
+		}
+	}
+	return cArray;
+}
+
+void WalkSat(vector<vector<int>> &scp, int * solution, int size)
+{
+//	int* newSolution;
+	vector<vector<int>> cMatrix = coverageMatrix(scp,size);
 	for(int i = 0; i < 10*size; i++)
 	{
 		
 		float r = rand()%100 + 1;
 		r = r/100;
 		if(r < p)
-			newSolution = BestFlip(scp,solution,size);
+		{
+			//for(int i = 0; i < size; i++)
+			//{
+			//	printf("%d",solution[i]);
+			//}
+			sol* solut = (sol*)malloc(sizeof(sol));
+			solut->solution = solution;
+			solut->clausesSatisfied = 0;
+			solut->numberOfColumns = 0;
+			int * cArray = counterArray(cMatrix,solut, scp.size(),size);
+			
+
+			BestFlip(scp,cMatrix,cArray,solut,size);
+
+			free(cArray);
+			//free(solut->solution);
+			free(solut);
+		}
 		else
-			newSolution = RandomFlip(solution,size);
+			RandomFlip(solution,size);
 		
 		
 			
-		free(solution);
-		solution = newSolution;
-		for(int i = 0; i < size; i++)
-		{
-			printf("%d",solution[i]);
-		}
+//		free(solution);
+//		solution = newSolution;
+
 //		printf("\n");
 
 	}
-	return solution;
+		for(int i = 0; i < cMatrix.size(); i++)
+		{
+			cMatrix[i].clear();
+		}
+		cMatrix.clear();
+//	return solution;
 }
