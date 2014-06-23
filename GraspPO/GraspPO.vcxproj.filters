@@ -33,6 +33,9 @@
     <ClInclude Include="LocalSearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GraspPO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

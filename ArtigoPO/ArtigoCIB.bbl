@@ -1,0 +1,32 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.2 }
+
+\bibitem[Bautista e Pereira 2007]{bautista2007grasp}
+\abntrefinfo{Bautista e Pereira}{BAUTISTA; PEREIRA}{2007}
+{BAUTISTA, J.; PEREIRA, J. A grasp algorithm to solve the unicost set covering
+  problem.
+\emph{Computers \& Operations Research}, Elsevier, v.~34, n.~10, p. 3162--3173,
+  2007.}
+
+\bibitem[Beasley 1990]{beasley1990or}
+\abntrefinfo{Beasley}{BEASLEY}{1990}
+{BEASLEY, J.~E. Or-library: distributing test problems by electronic mail.
+\emph{Journal of the operational research society}, JSTOR, p. 1069--1072,
+  1990.}
+
+\bibitem[Feo e Resende 1995]{feo1995greedy}
+\abntrefinfo{Feo e Resende}{FEO; RESENDE}{1995}
+{FEO, T.~A.; RESENDE, M.~G. Greedy randomized adaptive search procedures.
+\emph{Journal of global optimization}, Springer, v.~6, n.~2, p. 109--133,
+  1995.}
+
+\bibitem[Toregas et al. 1971]{toregas1971location}
+\abntrefinfo{Toregas et al.}{TOREGAS et al.}{1971}
+{TOREGAS, C. et al. The location of emergency service facilities.
+\emph{Operations Research}, INFORMS, v.~19, n.~6, p. 1363--1373, 1971.}
+
+\end{thebibliography}

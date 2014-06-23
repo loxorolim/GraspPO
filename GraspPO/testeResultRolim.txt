@@ -1,0 +1,25 @@
+Instância: 1
+Linhas cobertas: 5
+Número de colunas na solução: 2
+Tempo para achar melhor solução: 0.000000
+Tempo total de execução da instância: 0.000000
+Instância: 2
+Linhas cobertas: 5
+Número de colunas na solução: 2
+Tempo para achar melhor solução: 0.000000
+Tempo total de execução da instância: 1.000000
+Instância: 3
+Linhas cobertas: 5
+Número de colunas na solução: 2
+Tempo para achar melhor solução: 0.000000
+Tempo total de execução da instância: 0.000000
+Instância: 4
+Linhas cobertas: 5
+Número de colunas na solução: 2
+Tempo para achar melhor solução: 0.000000
+Tempo total de execução da instância: 0.000000
+Instância: 5
+Linhas cobertas: 5
+Número de colunas na solução: 2
+Tempo para achar melhor solução: 0.000000
+Tempo total de execução da instância: 1.000000

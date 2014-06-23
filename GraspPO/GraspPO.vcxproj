@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grasp.h" />
+    <ClInclude Include="GraspPO.h" />
     <ClInclude Include="LocalSearch.h" />
     <ClInclude Include="SetCoveringMethods.h" />
     <ClInclude Include="stdafx.h" />

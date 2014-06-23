@@ -59,6 +59,51 @@ int* metaheuristic(vector<vector<int>> &scp,int size, double* totalTimeR, double
 		newSolution = initialSolution(size);
 		newSolution = constructPhase(scp, size, newSolution);
 		WalkSat(scp,newSolution,size);
+/*		printf("Iteration %d \n", i);*/			 
+		//for(int i = 0; i < size; i++)
+		//{
+		//	printf("%d",newSolution[i]);
+		//	
+		//}
+		if(isBetterSolution(scp, newSolution, solution, size) == 1) //MUDAAAAAAAR
+		{
+			free(solution);
+			solution = newSolution;
+			bestSolutionTime = difftime( time(0), start);
+			int cS = 0, nC =0;
+			evaluateSolution(scp,solution,size, &cS, &nC);
+			//printf("%f \n", bestSolutionTime);
+			//printf("%d \n", cS);
+			//printf("%d \n", nC);
+		}
+		else
+		{
+			free(newSolution);
+		}
+		
+
+	}
+	totalTime = difftime( time(0), start);
+	*bestSolutionTimeR = bestSolutionTime;
+	*totalTimeR = totalTime;
+
+	evaluateSolution(scp,solution,size, cSatisfied, nColumns);
+	printf("%f \n", totalTime);
+	return solution;
+}
+int* metaheuristicRolim(vector<vector<int>> &scp,int size, double* totalTimeR, double* bestSolutionTimeR,int* cSatisfied,int* nColumns)
+{
+	int* solution = initialSolution(size);
+	int* newSolution;
+	time_t start = time(0);
+	double bestSolutionTime;
+	double totalTime;
+	for(int i = 0; i < iterations; i++)
+	{
+		newSolution = initialSolution(size);
+		newSolution = constructPhase(scp, size, newSolution);
+		//WalkSat(scp,newSolution,size);
+		RolimSat(scp,newSolution,size);
 		printf("Iteration %d \n", i);			 
 		//for(int i = 0; i < size; i++)
 		//{
@@ -148,10 +193,58 @@ void saveResults(string name)
 	}
 	fclose(file);
 }
+void saveResultsRolim(string name)
+{
+	int columnsSize = -1;
+	int rowsSize = -1;
+	int tam = name.length();
+	string fileName = name;
+	string resultName = name;
+	fileName += ".txt";
+	resultName += "ResultRolim.txt";
+	
+	const char* fileNameC = fileName.c_str();
+	const char* resultNameC = resultName.c_str();
+	
+	vector<vector<int>> scp = createSCPFromFile(fileNameC, &rowsSize, &columnsSize);
+	int i,j;
+	int x = scp.size();
+	for(i = 0;i<scp.size();i++)
+	{
+		printf("%d :",i);
+		for(j = 0; j < scp[i].size();j++)
+		{
+			printf("%d ",scp[i][j]);
+		}
+		printf("\n");
+	}
+	double totalTime;
+	double bestSolutionTime;
+	int cSatisfied;
+	int nColumns;
+	FILE* file;
+	fopen_s(&file,resultNameC, "w");
+	if(file)
+	{
+		for(int i = 1; i <= 5 ; i++)
+		{
+			int* sol = metaheuristicRolim(scp,columnsSize, &totalTime, &bestSolutionTime,&cSatisfied,&nColumns);
+			resultsToFile(file,totalTime,bestSolutionTime,cSatisfied,nColumns,i);
+		}
+	}
+	fclose(file);
+}
 int _tmain(int argc, _TCHAR* argv[])
 {
 	srand (time(NULL));
-	//saveResults("scpcyc07");
+	saveResults("scp41");
+	//saveResultsRolim("scp41");
+	saveResultsRolim("scp51");
+	saveResultsRolim("scp61");
+	saveResultsRolim("scpa1");
+	saveResultsRolim("scpe1");
+	saveResultsRolim("scpclr10");
+	saveResultsRolim("scpcyc07");
 //	saveResults("scpcyc07");
 	//saveResults("scp51");
 	//saveResults("scp61");

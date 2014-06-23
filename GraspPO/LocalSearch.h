@@ -20,3 +20,4 @@ int numOfColumnsInSolution(int * solution, int size);
 int clausesSatisfiedBySolution(vector<vector<int>> &scp, int * solution, int size);
 int isBetterSolution(vector<vector<int>> &scp, int * newSolution, int * solution, int size);
 void WalkSat(vector<vector<int>> &scp, int * solution, int size);
+void RolimSat(vector<vector<int>> &scp, int * solution, int size);

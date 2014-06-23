@@ -1,0 +1,25 @@
+Instância: 1
+Linhas cobertas: 511
+Número de colunas na solução: 32
+Tempo para achar melhor solução: 7.000000
+Tempo total de execução da instância: 52.000000
+Instância: 2
+Linhas cobertas: 511
+Número de colunas na solução: 33
+Tempo para achar melhor solução: 21.000000
+Tempo total de execução da instância: 53.000000
+Instância: 3
+Linhas cobertas: 511
+Número de colunas na solução: 33
+Tempo para achar melhor solução: 12.000000
+Tempo total de execução da instância: 54.000000
+Instância: 4
+Linhas cobertas: 511
+Número de colunas na solução: 33
+Tempo para achar melhor solução: 4.000000
+Tempo total de execução da instância: 54.000000
+Instância: 5
+Linhas cobertas: 511
+Número de colunas na solução: 32
+Tempo para achar melhor solução: 1.000000
+Tempo total de execução da instância: 52.000000
