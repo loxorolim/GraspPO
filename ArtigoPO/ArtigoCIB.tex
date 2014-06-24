@@ -142,7 +142,7 @@ A solução resultante desta fase pode ser inválida, devido à perturbação gerada p
 
 \section{Modificações no algoritmo}
 
-Foram criadas 3 novos métodos para a fase de melhoria, são eles: BestDualFlip, RandomDualFlip, RandomTripleFlip. O método BestDualFlip é bem parecido com o BestFlip do algoritmo original, no entanto, ao invés de realizar apenas o melhor Flip na solução, o BestDualFlip realiza os dois melhores Flips possíveis. O objetivo do BestDualFlip é melhorar a solução de forma mais eficaz embora a quantidade de tentativas a ser analisada seja maior. Os métodos RandomDualFlip e RandomTripleFlip, realizam 2 e 3 Flips aleatoriamente, o objetivo destes métodos é causar uma maior perturbação na solução. Para um primeiro teste, o RandomFlip na fase de melhoria do algoritmo original foi substituído pelo RandomDualFlip e pelo RandomTripleflip, no entanto, a perturbação causada por estes métodos pioraram muito a solução, impedindo que o BestFlip pudesse melhorá-las. O algoritmo modificado final substitui o BestFlip pelo BestDualFlip, conforme mostra o procedimento 3.
+Foram criadas 3 novos métodos para a fase de melhoria, são eles: BestDualFlip, RandomDualFlip, RandomTripleFlip. O método BestDualFlip é bem parecido com o BestFlip do algoritmo original, no entanto, ao invés de realizar apenas o melhor Flip na solução, o BestDualFlip realiza os dois melhores Flips possíveis. O objetivo do BestDualFlip é melhorar a solução de forma mais eficaz embora a quantidade de tentativas a ser analisada seja maior. Os métodos RandomDualFlip e RandomTripleFlip, realizam 2 e 3 Flips aleatoriamente, o objetivo destes métodos é causar uma maior perturbação na solução. Para um primeiro teste, o RandomFlip na fase de melhoria do algoritmo original foi substituído pelo RandomDualFlip e pelo RandomTripleFlip, no entanto, a perturbação causada por estes métodos pioraram muito a solução, impedindo que o BestFlip pudesse melhorá-las. O algoritmo modificado final substitui o BestFlip pelo BestDualFlip, conforme mostra o procedimento 3.
 
 \texttt{
  Procedimento 3: Fase de melhoria modificada\\
@@ -159,9 +159,9 @@ Foram criadas 3 novos métodos para a fase de melhoria, são eles: BestDualFlip, R
 
 \section{Resultados Computacionais}
 
-O algoritmo foi programado em C++ e compilado usando o VC++ 2012~\cite{}. Todos os testes foram realizados em uma única \textit{thread} em um Intel Core i5 de 3 GHz com 8 Gb de memória RAM no sistema operacional Windows 8.1. Para o algoritmo original, as configurações especificadas foram: Número\_de\_Iterações = 200, \(\alpha = 0.9\), MAXFLIPS = 10*n e p = 0.75. Para o algoritmo modificado, o número de MAXFLIPS foi reduzido para n/10, pois a complexidade do método BestDualFlip é muito superior ao BestFlip.
+O algoritmo foi programado em C++ e compilado usando o VC++ 2012. Todos os testes foram realizados em uma única \textit{thread} em um Intel Core i5 de 3 GHz com 8 Gb de memória RAM no sistema operacional Windows 8.1. Para o algoritmo original, as configurações especificadas foram: Número\_de\_Iterações = 200, \(\alpha = 0.9\), MAXFLIPS = 10*n e p = 0.75. Para o algoritmo modificado, o número de MAXFLIPS foi reduzido para n/10, pois a complexidade do método BestDualFlip é muito superior ao BestFlip.
 
-As instâncias utilizadas neste teste foram retirados da OR-Library~\cite{beasley1990or}. Detalhes destas instâncias podem ser vistos na Tabela~\ref{table1} 
+As instâncias utilizadas neste teste foram retirados da OR-Library~\cite{beasley1990or}. Detalhes destas instâncias podem ser vistos na Tabela~\ref{table1}.
 
 \begin{table}
 \scalebox{0.85}{
@@ -194,7 +194,7 @@ Instância & M.R-O &  M.R*-O & M.R-M & M.R*-M \\
 6.1 & 21 & 22 & 40 & 43   \\
 A.1 & 42 & 42 & 106 & 110.6  \\
 E.1 & 6 & 6 & 12 & 12.4   \\
-CLR.10-4 & 25 & 25,6 & 32 & 32.6   \\
+CLR.10-4 & 25 & 25.6 & 32 & 32.6   \\
 CYC.7 & 154 & 155.2 & 172 & 173.2 \\
 \end{tabular}
 \caption{Resultados obtidos pelo algoritmo original e o algoritmo modificado.}
@@ -222,7 +222,7 @@ CYC.7 & 48 & 23.4 & 85.8 & 46 & 37.8 & 84.2\\
 
 \section{Conclusão}
 
-Embora o método BestDualFlip analise uma quantidade maior de modificações na solução do que o BestFlip, os experimentos computacionais mostram que o algoritmo modificado não conseguiu obter resultados melhores que o original e que seu tempo de execução foi muito superior, principalmente nas instâncias grandes. A possível causa da má performance do BestDualFlip é porque a fase de construção já retorna uma boa solução e a realização de dois Flips altera excessivamente esta solução de forma a perturbá-la e não melhorá-la. Para trabalhos futuros, uma junção de ambos os algoritmos pode ser testada, de forma a reduzir o número de execuções do BestDualFlip que é muito custoso. 
+Embora o método BestDualFlip analise uma quantidade maior de modificações na solução do que o BestFlip, os experimentos computacionais mostram que o algoritmo modificado não conseguiu obter resultados melhores que o original e que seu tempo de execução foi muito superior, principalmente nas instâncias grandes. A possível causa da má performance do BestDualFlip é porque a fase de construção já retorna uma boa solução e a realização de dois Flips altera excessivamente esta solução de forma a perturbá-la e não melhorá-la. Para trabalhos futuros, uma junção de ambos os algoritmos pode ser testada, de forma a reduzir o número de execuções do BestDualFlip que é muito custoso. Os algoritmos implementados estão disponibilizados em \texttt{https://github.com/loxorolim/GraspPO/}.
 \\ \\
 %\bibliographystyle{sbc}
 \bibliography{sbc-template}
